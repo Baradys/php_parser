@@ -47,6 +47,12 @@ class Parser
             }
             # Парсим нужные данные
             $html = str_get_html($res);
+
+            if ($html->find('.uncorrect-entity-message-block', 0)) {
+                echo 'Выбранного вами бренда не существует!';
+                return false;
+            }
+
             $brand = $html->find('h1[itemprop=name]', 0);
             $description = $html->find('p[itemprop=description]', 0);
             $brand_logo = $site_name . $html->find('img[itemprop=logo]', 0)->src;
@@ -88,5 +94,6 @@ class Parser
         return false;
     }
 }
+
 # Тестовый запуск
-echo Parser::fiveGear("abb-filter");
+echo Parser::fiveGear("ABB-Filter");
