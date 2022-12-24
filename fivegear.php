@@ -56,6 +56,7 @@ class Parser
                 echo 'Возникла ошибка: ', curl_errno($ch);
                 return false;
             }
+            curl_close($ch);
             # Парсим нужные данные
             $html = str_get_html($res);
 
